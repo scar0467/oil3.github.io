@@ -2,118 +2,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Магазин автомобильных масел</title>
+    <title>Магазин Моторных Масел</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f2f2f2;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #35424a;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
         }
         .container {
-            padding: 16px;
-        }
-        .card {
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 16px 0;
-            padding: 16px;
+            max-width: 400px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
+            padding: 10px;
         }
-        .card img {
+        .product-card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            width: 90%; /* Ширина карточки для мобильных устройств */
+            max-width: 400px; /* Ограничение ширины для больших экранов */
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .product-image {
             width: 100%;
-            max-width: 150px;
-            border-radius: 8px;
+            height: auto;
+            border-bottom: 1px solid #ddd;
         }
-        .card h3 {
-            margin: 12px 0 8px;
+        .product-info {
+            padding: 15px;
         }
-        .card p {
-            margin: 0 0 12px;
+        .product-title {
+            font-size: 16px;
+            margin-bottom: 10px;
         }
-        .details-btn {
-            background-color: #007bff;
+        .product-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .product-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        /* Медиа-запросы для небольших экранов */
+        @media (max-width: 480px) {
+            .product-title {
+                font-size: 14px;
+            }
+            .product-description {
+                font-size: 12px;
+            }
+            .product-price {
+                font-size: 14px;
+            }
+        }
+        .description {
+            display: none;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .toggle-button {
+            background-color: #007BFF;
             color: white;
             border: none;
+            padding: 10px;
             border-radius: 5px;
-            padding: 8px 16px;
-            cursor: pointer;
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: white;
-            border-radius: 8px;
-            padding: 16px;
-            width: 90%;
-            max-width: 400px;
-            position: relative;
-        }
-        .close-btn {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: none;
-            border: none;
-            font-size: 16px;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
+<header>
+    <h1>Магазин Моторных Масел</h1>
+</header>
 
-    <div class="container">
-        <div class="card">
-            <img src="https://w7.pngwing.com/pngs/890/55/png-transparent-motor-oil-exxonmobil-lubricant-lubricant-motorcycle-oil-engine-thumbnail.png" alt="Масло 1" class="product-image" alt="Масло 1">
-            <h3>Масло 1</h3>
-            <p>Синтетическое, 5W-30</p>
-            <button class="details-btn" onclick="openModal('modal1')">Подробности</button>
-        </div>
-        <div class="card">
-            <img src="https://w7.pngwing.com/pngs/297/514/png-transparent-motorcycle-exxonmobil-motor-oil-lubricant-motorcycle-motorcycle-oil-engine-thumbnail.png" alt="Масло 2" class="product-image" alt="Масло 2">
-            <h3>Масло 2</h3>
-            <p>Полусинтетическое, 10W-40</p>
-            <button class="details-btn" onclick="openModal('modal2')">Подробности</button>
-        </div>
-        <!-- Добавьте дополнительные карточки по аналогии -->
+<main class="container">
+    <div class="product-card">
+        <img src="https://w7.pngwing.com/pngs/890/55/png-transparent-motor-oil-exxonmobil-lubricant-lubricant-motorcycle-oil-engine-thumbnail.png" alt="Масло 1" class="product-image">
+        <div class="product-info">
+            <h2 class="product-title">Моторное масло 5W-30</h2>
+            <p class="product-description">Высококачественное синтетическое масло для легковых автомобилей с превосходными защитными свойствами.</p>
+            <p class="product-price">1200 ₽</p>
+            <div class="description" id="desc1">
+                <p>Полный синтетический моторный油, обеспечивающий максимальную защиту двигателя в любых условиях. Подходит для всех современных автомобилей.</p>
+            </div>
+            <button class="toggle-button" onclick="toggleDescription('desc1', this)">Развернуть</button>
     </div>
 
-    <div class="modal" id="modal1">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('modal1')">×</button>
-            <h3>Масло 1</h3>
-            <p>Полное описание и характеристики масла 1.</p>
+    <div class="product-card">
+        <img src="https://w7.pngwing.com/pngs/297/514/png-transparent-motorcycle-exxonmobil-motor-oil-lubricant-motorcycle-motorcycle-oil-engine-thumbnail.png" alt="Масло 2" class="product-image">
+        <div class="product-info">
+            <h2 class="product-title">Моторное масло 10W-40</h2>
+            <p class="product-description">Полусинтетическое масло для двигателей с увеличенным сроком службы и отличной стабильностью.</p>
+            <p class="product-price">900 ₽</p>
+            <div class="description" id="desc2">
+                <p>Полный синтетический моторный油, обеспечивающий максимальную защиту двигателя в любых условиях. Подходит для всех современных автомобилей.</p>
+            </div>
+            <button class="toggle-button" onclick="toggleDescription('desc2', this)">Развернуть</button>
+    </div>
+    <div class="product-card">
+        <img src="https://w7.pngwing.com/pngs/355/501/png-transparent-car-castrol-motor-oil-european-automobile-manufacturers-association-synthetic-oil-car-diesel-fuel-car-transport-thumbnail.png" alt="Масло 3" class="product-image">
+        <div class="product-info">
+            <h2 class="product-title">Моторное масло 10W-40</h2>
+            <p class="product-description">Полусинтетическое масло для двигателей с увеличенным сроком службы и отличной стабильностью.</p>
+            <p class="product-price">900 ₽</p>
+            <div class="description" id="desc3">
+                <p>Полный синтетический моторный油, обеспечивающий максимальную защиту двигателя в любых условиях. Подходит для всех современных автомобилей.</p>
+            </div>
+            <button class="toggle-button" onclick="toggleDescription('desc3', this)">Развернуть</button>
         </div>
     </div>
-
-    <div class="modal" id="modal2">
-        <div class="modal-content">
-            <button class="close-btn" onclick="closeModal('modal2')">×</button>
-            <h3>Масло 2</h3>
-            <p>Полное описание и характеристики масла 2.</p>
+    <div class="product-card">
+        <img src="https://w7.pngwing.com/pngs/631/579/png-transparent-mobil-1-synthetic-oil-motor-oil-lubricant-engine-diesel-fuel-oil-transport-thumbnail.png" alt="Масло 4" class="product-image">
+        <div class="product-info">
+            <h2 class="product-title">Моторное масло 10W-40</h2>
+            <p class="product-description">Полусинтетическое масло для двигателей с увеличенным сроком службы и отличной стабильностью.</p>
+            <p class="product-price">900 ₽</p>
+            <div class="description" id="desc4">
+                <p>Полный синтетический моторный油, обеспечивающий максимальную защиту двигателя в любых условиях. Подходит для всех современных автомобилей.</p>
+            </div>
+            <button class="toggle-button" onclick="toggleDescription('desc4', this)">Развернуть</button>
         </div>
     </div>
+    <div class="product-card">
+        <img src="https://w7.pngwing.com/pngs/355/501/png-transparent-car-castrol-motor-oil-european-automobile-manufacturers-association-synthetic-oil-car-diesel-fuel-car-transport-thumbnail.png" alt="Масло 5" class="product-image">
+        <div class="product-info">
+            <h2 class="product-title">Моторное масло 10W-40</h2>
+            <p class="product-description">Полусинтетическое масло для двигателей с увеличенным сроком службы и отличной стабильностью.</p>
+            <p class="product-price">900 ₽</p>
+            <div class="description" id="desc5">
+                <p>Полный синтетический моторный油, обеспечивающий максимальную защиту двигателя в любых условиях. Подходит для всех современных автомобилей.</p>
+            </div>
+            <button class="toggle-button" onclick="toggleDescription('desc5', this)">Развернуть</button>
+        </div>
+    </div>
+    <div class="product-card">
+        <img src="https://w7.pngwing.com/pngs/631/579/png-transparent-mobil-1-synthetic-oil-motor-oil-lubricant-engine-diesel-fuel-oil-transport-thumbnail.png" alt="Масло 6" class="product-image">
+        <div class="product-info">
+            <h2 class="product-title">Моторное масло 10W-40</h2>
+            <p class="product-description">Полусинтетическое масло для двигателей с увеличенным сроком службы и отличной стабильностью.</p>
+            <p class="product-price">900 ₽</p>
+            <div class="description" id="desc6">
+                <p>Полный синтетический моторный油, обеспечивающий максимальную защиту двигателя в любых условиях. Подходит для всех современных автомобилей.</p>
+            </div>
+            <button class="toggle-button" onclick="toggleDescription('desc6', this)">Развернуть</button>
+        </div>
+    </div>
+    <!-- Добавьте больше карточек товаров по аналогии -->
 
-    <script>
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = 'flex';
-        }
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-    </script>
+</main>
+
+<script>
+    function toggleDescription(descId, button) {
+            const description = document.getElementById(descId);
+            if (description.style.display === "none" || description.style.display === "") {
+                description.style.display = "block";
+                button.innerText = "Свернуть";
+            } else {
+                description.style.display = "none";
+                button.innerText = "Развернуть";
+            }
+    }
+</script>
 
 </body>
 </html>
