@@ -166,7 +166,7 @@
 
 </main>
 
-<script>
+  <script>
     function toggleDescription(descId, button) {
             const description = document.getElementById(descId);
             if (description.style.display === "none" || description.style.display === "") {
@@ -177,7 +177,7 @@
                 button.innerText = "Развернуть";
             }
     }
-</script>
+  </script>
 
 </body>
 </html>
